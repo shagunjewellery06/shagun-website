@@ -1,0 +1,59 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "assets/uploads"
+public_folder: "/assets/uploads"
+
+publish_mode: simple
+
+collections:
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "data/settings.json"
+        label: "Business Info & Text"
+        name: "settings"
+        fields:
+          - { label: "Business Name (shown in header/footer)", name: "business_name", widget: "string" }
+          - { label: "Full Legal Name", name: "full_legal_name", widget: "string" }
+          - { label: "Tagline", name: "tagline", widget: "string" }
+          - { label: "Phone Number", name: "phone", widget: "string" }
+          - { label: "WhatsApp Number (digits only, with country code, e.g. 971501234567)", name: "whatsapp", widget: "string" }
+          - { label: "Email", name: "email", widget: "string" }
+          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Google Maps Embed URL", name: "map_embed_url", widget: "string" }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+          - { label: "Homepage Headline", name: "hero_heading", widget: "string" }
+          - { label: "Homepage Subheading", name: "hero_subheading", widget: "text" }
+          - { label: "Primary Button Text", name: "cta_primary", widget: "string" }
+          - { label: "Secondary Button Text", name: "cta_secondary", widget: "string" }
+          - { label: "About — Heading", name: "about_heading", widget: "string" }
+          - { label: "About — Paragraph 1", name: "about_paragraph_1", widget: "text" }
+          - { label: "About — Paragraph 2", name: "about_paragraph_2", widget: "text" }
+          - { label: "Custom Design — Heading", name: "custom_design_heading", widget: "string" }
+          - { label: "Custom Design — Text", name: "custom_design_text", widget: "text" }
+          - { label: "Footer Note", name: "footer_note", widget: "string" }
+          - label: "Store Timings"
+            name: "timings"
+            widget: "list"
+            fields:
+              - { label: "Days", name: "day", widget: "string" }
+              - { label: "Hours", name: "hours", widget: "string" }
+
+  - name: "collections"
+    label: "Product Collections"
+    files:
+      - file: "data/collections.json"
+        label: "Manage Collections"
+        name: "collections"
+        fields:
+          - label: "Collections"
+            name: "items"
+            widget: "list"
+            summary: "{{name}}"
+            fields:
+              - { label: "Collection Name", name: "name", widget: "string" }
+              - { label: "Description", name: "description", widget: "text" }
+              - { label: "Photo", name: "image", widget: "image", required: false, hint: "Recommended: square photo, at least 600x600px" }

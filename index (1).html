@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shagun Jewellery — Gold & Diamond Jewellery, Dubai</title>
+<meta name="description" content="Shagun Jewellery Trading LLC — certified gold and diamond jewellery in Dubai. Browse collections, share a custom design, or visit our showroom.">
+<link rel="icon" href="assets/logo-transparent.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="nav-row">
+    <a href="#top" class="brand">
+      <img src="assets/logo-transparent.png" alt="Shagun Jewellery crest logo">
+      <span class="brand-name" id="brandName">Shagun Jewellery</span>
+    </a>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#collections">Collections</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#custom-design">Custom Design</a></li>
+        <li><a href="#contact">Visit Us</a></li>
+      </ul>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="top">
+  <img class="hero-logo" src="assets/logo-transparent.png" alt="Shagun Jewellery crest">
+  <h1 id="heroHeading">Timeless Gold. Trusted Craft.</h1>
+  <p class="sub" id="heroSub">Discover fine gold and diamond jewellery for every occasion.</p>
+  <div class="hero-ctas">
+    <a href="#collections" class="btn btn-primary" id="ctaPrimary">View Collections</a>
+    <a href="#contact" class="btn btn-outline" id="ctaSecondary">Book a Visit</a>
+  </div>
+  <div class="crest-divider" style="margin-top:70px;">
+    <svg viewBox="0 0 140 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M2 4 C 30 2, 40 30, 70 30 C 100 30, 110 2, 138 4" stroke="#B8912F" stroke-width="1.2"/>
+      <circle cx="70" cy="30" r="3" fill="#B8912F"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= COLLECTIONS ================= -->
+<section id="collections">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Our Range</span>
+      <h2>Collections</h2>
+      <p>Every piece hallmarked and certified for purity.</p>
+    </div>
+    <div class="collections-grid" id="collectionsGrid"></div>
+  </div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section class="alt-bg" id="about">
+  <div class="wrap about-section">
+    <div class="about-visual">
+      <img src="assets/logo-transparent.png" alt="">
+    </div>
+    <div class="about-text">
+      <span class="eyebrow">Our Story</span>
+      <h2 id="aboutHeading">A Name Built on Trust</h2>
+      <div id="aboutParas"></div>
+      <div class="about-stats">
+        <div><strong>100%</strong><span>Hallmarked Gold</span></div>
+        <div><strong>BIS+</strong><span>Certified Purity</span></div>
+        <div><strong>Dubai</strong><span>Proudly Local</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CUSTOM DESIGN ================= -->
+<section id="custom-design">
+  <div class="wrap">
+    <div class="custom-design">
+      <div>
+        <span class="eyebrow">Bespoke Orders</span>
+        <h2 id="customHeading">Have a Design in Mind?</h2>
+        <p id="customText"></p>
+      </div>
+      <div>
+        <div class="whatsapp-box">
+          <strong style="font-family:var(--font-display); font-size:1.2rem; color:var(--gold-pale);">Fastest way to share your design</strong>
+          <p style="color:rgba(251,250,244,0.75); font-size:0.9rem; margin-top:10px;">Send us a photo, sketch, or reference image directly and we'll reply with a quote.</p>
+          <a href="#" id="waCustomBtn" target="_blank" class="btn btn-gold">Chat & Share Design on WhatsApp</a>
+        </div>
+
+        <form class="inquiry-form" id="inquiryForm" style="margin-top:24px;">
+          <label for="cd-name">Or send us the details</label>
+          <input type="text" id="cd-name" placeholder="Your name" required>
+          <input type="tel" id="cd-phone" placeholder="Phone number" required>
+          <textarea id="cd-notes" placeholder="Describe your design — metal, weight, occasion, budget..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send Inquiry</button>
+          <p class="form-hint">This opens your email app with the details filled in — attach your design photo before sending.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Visit Us</span>
+      <h2>Showroom & Contact</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card">
+        <div class="contact-line">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><strong>Address</strong><span id="c-address"></span></div>
+        </div>
+        <div class="contact-line">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92Z"/></svg>
+          <div><strong>Phone</strong><span id="c-phone"></span></div>
+        </div>
+        <div class="contact-line">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="m22 6-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+          <div><strong>Email</strong><span id="c-email"></span></div>
+        </div>
+        <div class="contact-line" style="align-items:flex-start;">
+          <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <div style="width:100%;">
+            <strong>Store Timings</strong>
+            <table class="timings-table" id="timingsTable"></table>
+          </div>
+        </div>
+        <div class="social-row" id="socialRow"></div>
+      </div>
+      <iframe class="map-frame" id="mapFrame" src="" loading="lazy" title="Store location map"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <span class="brand-name" id="footBrand">Shagun Jewellery</span>
+    <p id="footLegal">Shagun Jewellery Trading LLC</p>
+    <p class="foot-note" id="footNote"></p>
+    <p class="foot-note">&copy; <span id="year"></span> — All rights reserved.</p>
+  </div>
+</footer>
+
+<a class="wa-float" id="waFloat" href="#" target="_blank" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.79.47 3.47 1.35 4.93L2 22l5.29-1.42a9.87 9.87 0 0 0 4.75 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2Zm5.9 14.03c-.25.7-1.45 1.34-2 1.42-.51.08-1.15.11-1.86-.12-.43-.14-.98-.32-1.69-.63-2.97-1.28-4.9-4.26-5.05-4.46-.15-.2-1.21-1.6-1.21-3.06s.76-2.17 1.03-2.47c.27-.3.6-.37.8-.37h.57c.18 0 .43-.07.67.51.25.6.85 2.06.92 2.21.07.15.12.33.02.53-.1.2-.15.32-.3.5-.15.18-.31.4-.44.53-.15.15-.3.32-.13.62.17.3.76 1.25 1.63 2.02 1.12.99 2.06 1.3 2.37 1.45.31.15.49.13.67-.08.18-.2.77-.9.98-1.2.2-.31.4-.26.68-.16.28.1 1.78.84 2.08.99.3.15.5.23.58.35.08.13.08.75-.17 1.44Z"/></svg>
+</a>
+
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+
+<!-- Needed so "invite" and "reset password" emails from the admin panel work correctly -->
+<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+</body>
+</html>
