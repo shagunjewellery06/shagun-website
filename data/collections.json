@@ -1,0 +1,34 @@
+{
+  "items": [
+    {
+      "name": "Gold Jewellery",
+      "description": "A curated selection of gold rings, chains, bangles, and earrings sourced from trusted wholesale suppliers.",
+      "image": ""
+    },
+    {
+      "name": "Silver Jewellery",
+      "description": "Elegant, affordable silver pieces for everyday wear and gifting.",
+      "image": ""
+    },
+    {
+      "name": "Bridal Collection",
+      "description": "Statement sets for weddings — necklaces, bangles, and earrings for your special day.",
+      "image": ""
+    },
+    {
+      "name": "Daily Wear Gold",
+      "description": "Lightweight, comfortable gold pieces designed for everyday elegance.",
+      "image": ""
+    },
+    {
+      "name": "Sell Your Old Gold & Silver",
+      "description": "Have jewellery you no longer wear? We buy old and used gold and silver at fair, transparent rates based on the day's purity and weight.",
+      "image": ""
+    },
+    {
+      "name": "Looking for Something Specific?",
+      "description": "Share a photo or reference image of the design you have in mind. We'll help you find or source a matching piece from our supplier network.",
+      "image": ""
+    }
+  ]
+}
