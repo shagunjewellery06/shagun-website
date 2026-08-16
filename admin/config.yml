@@ -15,32 +15,31 @@ collections:
         label: "Business Info & Text"
         name: "settings"
         fields:
-          - { label: "Business Name (shown in header/footer)", name: "business_name", widget: "string" }
-          - { label: "Full Legal Name", name: "full_legal_name", widget: "string" }
-          - { label: "Tagline", name: "tagline", widget: "string" }
-          - { label: "Phone Number", name: "phone", widget: "string" }
-          - { label: "WhatsApp Number (digits only, with country code, e.g. 971501234567)", name: "whatsapp", widget: "string" }
-          - { label: "Email", name: "email", widget: "string" }
-          - { label: "Address", name: "address", widget: "string" }
+          - { label: "Business Name (shown in header/footer)", name: "business_name", widget: "string", required: false }
+          - { label: "Full Legal Name", name: "full_legal_name", widget: "string", required: false }
+          - { label: "Tagline", name: "tagline", widget: "string", required: false }
+          - { label: "Phone Number", name: "phone", widget: "string", required: false }
+          - { label: "WhatsApp Number (digits only, with country code, e.g. 971501234567)", name: "whatsapp", widget: "string", required: false }
+          - { label: "Email", name: "email", widget: "string", required: false }
+          - { label: "Address", name: "address", widget: "string", required: false }
           - { label: "Google Maps Embed URL", name: "map_embed_url", widget: "string", required: false }
           - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
-          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
-          - { label: "Homepage Headline", name: "hero_heading", widget: "string" }
-          - { label: "Homepage Subheading", name: "hero_subheading", widget: "text" }
-          - { label: "Primary Button Text", name: "cta_primary", widget: "string" }
-          - { label: "Secondary Button Text", name: "cta_secondary", widget: "string" }
-          - { label: "About — Heading", name: "about_heading", widget: "string" }
-          - { label: "About — Paragraph 1", name: "about_paragraph_1", widget: "text" }
-          - { label: "About — Paragraph 2", name: "about_paragraph_2", widget: "text" }
-          - { label: "Custom Design — Heading", name: "custom_design_heading", widget: "string" }
-          - { label: "Custom Design — Text", name: "custom_design_text", widget: "text" }
-          - { label: "Footer Note", name: "footer_note", widget: "string" }
+          - { label: "Homepage Headline", name: "hero_heading", widget: "string", required: false }
+          - { label: "Homepage Subheading", name: "hero_subheading", widget: "text", required: false }
+          - { label: "Primary Button Text", name: "cta_primary", widget: "string", required: false }
+          - { label: "Secondary Button Text", name: "cta_secondary", widget: "string", required: false }
+          - { label: "About — Heading", name: "about_heading", widget: "string", required: false }
+          - { label: "About — Paragraph 1", name: "about_paragraph_1", widget: "text", required: false }
+          - { label: "About — Paragraph 2", name: "about_paragraph_2", widget: "text", required: false }
+          - { label: "Custom Design — Heading", name: "custom_design_heading", widget: "string", required: false }
+          - { label: "Custom Design — Text", name: "custom_design_text", widget: "text", required: false }
+          - { label: "Footer Note", name: "footer_note", widget: "string", required: false }
           - label: "Store Timings"
             name: "timings"
             widget: "list"
             fields:
-              - { label: "Days", name: "day", widget: "string" }
-              - { label: "Hours", name: "hours", widget: "string" }
+              - { label: "Days", name: "day", widget: "string", required: false }
+              - { label: "Hours", name: "hours", widget: "string", required: false }
 
   - name: "collections"
     label: "Product Collections"
