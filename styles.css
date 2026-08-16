@@ -151,13 +151,22 @@ nav.main-nav a:hover::after { transform: scaleX(1); }
 /* ================= HERO ================= */
 .hero {
   position: relative;
-  padding: 100px 28px 90px;
+  padding: 140px 28px 120px;
   text-align: center;
   overflow: hidden;
   background:
-    radial-gradient(ellipse at 50% 0%, rgba(184,145,47,0.10), transparent 60%),
-    var(--cream);
+    linear-gradient(160deg, rgba(47,56,35,0.86), rgba(47,56,35,0.62)),
+    url('assets/bg/gold-jewellery-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+.hero h1 { color: var(--cream); }
+.hero p.sub { color: var(--gold-pale); }
+.hero .btn-outline { color: var(--cream); border-color: var(--cream); }
+.hero .btn-outline:hover { background: var(--cream); color: var(--olive-dark); }
+.hero .btn-primary { background: var(--gold); border-color: var(--gold); }
+.hero .btn-primary:hover { background: var(--gold-bright); }
 
 .hero-logo {
   width: 118px;
@@ -235,7 +244,14 @@ section { padding: 92px 0; }
   margin-top: 14px;
 }
 
-.alt-bg { background: var(--olive-pale); }
+.alt-bg {
+  background:
+    linear-gradient(160deg, rgba(251,250,244,0.94), rgba(231,235,221,0.92)),
+    url('assets/bg/gold-detail-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 
 /* ================= COLLECTIONS ================= */
 .collections-grid {
@@ -286,12 +302,17 @@ section { padding: 92px 0; }
 }
 .about-visual {
   aspect-ratio: 4/5;
-  background: linear-gradient(155deg, var(--olive-dark), var(--olive));
+  background:
+    linear-gradient(155deg, rgba(47,56,35,0.25), rgba(47,56,35,0.05)),
+    url('assets/bg/mixed-jewellery-bg.jpg');
+  background-size: cover;
+  background-position: center;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  box-shadow: 0 24px 48px -20px rgba(47,56,35,0.35);
 }
 .about-visual::before {
   content: "";
@@ -299,10 +320,12 @@ section { padding: 92px 0; }
   inset: 14px;
   border: 1px solid rgba(212,175,55,0.5);
 }
-.about-visual img {
-  width: 44%;
-  filter: brightness(0) invert(1);
-  opacity: 0.9;
+.about-visual img { display: none; }
+.about-text {
+  background: rgba(255,255,255,0.55);
+  backdrop-filter: blur(6px);
+  padding: 36px;
+  border: 1px solid rgba(184,145,47,0.2);
 }
 .about-text p {
   color: var(--olive-dark);
@@ -383,13 +406,22 @@ form.inquiry-form label {
 }
 
 /* ================= CONTACT ================= */
+#contact {
+  background:
+    linear-gradient(160deg, rgba(251,250,244,0.93), rgba(251,250,244,0.88)),
+    url('assets/bg/silver-jewellery-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 50px;
 }
 .contact-card {
-  background: var(--white);
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(6px);
   border: 1px solid rgba(184,145,47,0.22);
   padding: 40px;
 }
@@ -492,6 +524,7 @@ footer .foot-note { color: rgba(251,250,244,0.5); font-size: 0.76rem; margin-top
 
 /* ================= RESPONSIVE ================= */
 @media (max-width: 900px) {
+  .hero, .alt-bg, #contact { background-attachment: scroll; }
   .about-section, .custom-design, .contact-grid { grid-template-columns: 1fr; }
   .collections-grid { grid-template-columns: repeat(2, 1fr); }
   nav.main-nav { display: none; }
