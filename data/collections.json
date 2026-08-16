@@ -8,27 +8,27 @@
     {
       "name": "Silver Jewellery",
       "description": "Elegant, affordable silver pieces for everyday wear and gifting.",
-      "image": ""
+      "image": "/assets/uploads/02-silver-jewellery-600x600.jpg"
     },
     {
       "name": "Bridal Collection",
       "description": "Statement sets for weddings — necklaces, bangles, and earrings for your special day.",
-      "image": ""
+      "image": "/assets/uploads/03-bridal-collection-600x600.jpg"
     },
     {
       "name": "Daily Wear Gold",
       "description": "Lightweight, comfortable gold pieces designed for everyday elegance.",
-      "image": ""
+      "image": "/assets/uploads/04-daily-wear-gold-600x600.jpg"
     },
     {
       "name": "Sell Your Old Gold & Silver",
       "description": "Have jewellery you no longer wear? We buy old and used gold and silver at fair, transparent rates based on the day's purity and weight.",
-      "image": ""
+      "image": "/assets/uploads/05-sell-old-gold-silver-600x600.jpg"
     },
     {
       "name": "Looking for Something Specific?",
       "description": "Share a photo or reference image of the design you have in mind. We'll help you find or source a matching piece from our supplier network.",
-      "image": ""
+      "image": "/assets/uploads/06-custom-sourcing-600x600.jpg"
     }
   ]
 }
