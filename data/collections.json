@@ -4,32 +4,39 @@
       "name": "Gold Jewellery",
       "description": "A curated selection of gold rings, chains, bangles, and earrings sourced from trusted wholesale suppliers.",
       "image": "/assets/uploads/ladies-gold-jewellery-set.jpg",
-      "photos": "/assets/uploads/canva-ai-image-sep-7-2026-12_41_59-pm_20260907_133844_0000.jpg"
+      "photos": [
+        "/assets/uploads/canva-ai-image-sep-7-2026-12_41_59-pm_20260907_133844_0000.jpg"
+      ]
     },
     {
       "name": "Silver Jewellery",
       "description": "Elegant, affordable silver pieces for everyday wear and gifting.",
-      "image": "/assets/uploads/silver-jewellery-premium-600x600.jpg"
+      "image": "/assets/uploads/silver-jewellery-premium-600x600.jpg",
+      "photos": []
     },
     {
       "name": "Bridal Collection",
       "description": "Statement sets for weddings — necklaces, bangles, and earrings for your special day.",
-      "image": "/assets/uploads/03-bridal-collection-600x600.jpg"
+      "image": "/assets/uploads/03-bridal-collection-600x600.jpg",
+      "photos": []
     },
     {
       "name": "Daily Wear Gold",
       "description": "Lightweight, comfortable gold pieces designed for everyday elegance.",
-      "image": "/assets/uploads/04-daily-wear-gold-600x600.jpg"
+      "image": "/assets/uploads/04-daily-wear-gold-600x600.jpg",
+      "photos": []
     },
     {
       "name": "Sell Your Old Gold & Silver",
       "description": "Have jewellery you no longer wear? We buy old and used gold and silver at fair, transparent rates based on the day's purity and weight.",
-      "image": "/assets/uploads/05-sell-old-gold-silver-600x600.jpg"
+      "image": "/assets/uploads/05-sell-old-gold-silver-600x600.jpg",
+      "photos": []
     },
     {
       "name": "Looking for Something Specific?",
       "description": "Share a photo or reference image of the design you have in mind. We'll help you find or source a matching piece from our supplier network.",
-      "image": "/assets/uploads/06-custom-sourcing-600x600.jpg"
+      "image": "/assets/uploads/06-custom-sourcing-600x600.jpg",
+      "photos": []
     }
   ]
 }
