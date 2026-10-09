@@ -56,40 +56,61 @@
   setText('customHeading', settings.custom_design_heading);
   setText('customText', settings.custom_design_text);
 
-  // ---------- Collections grid (click a card to open its photo gallery) ----------
+  // ---------- Collections grid (click a card to open its photo + video gallery) ----------
   const fallbackIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 9h12l-6 12L6 9Z"/><path d="M3 9h18L18 3H6L3 9Z"/></svg>`;
 
-  // The admin panel may store photos as one text value or a list; handle both
+  // The admin panel may store media as one text value or a list; handle both
   const toList = v => Array.isArray(v) ? v.filter(Boolean) : (v ? [v] : []);
+  // A file counts as a video if its name ends in a common video extension
+  const isVideo = u => /\.(mp4|webm|mov|m4v|ogv)(\?.*)?$/i.test(u || '');
 
   const grid = document.getElementById('collectionsGrid');
   (collectionsData.items || []).forEach(item => {
-    const photos = toList(item.photos);
-    const cover = item.image || photos[0] || '';
+    const media = toList(item.photos);
+    const firstPhoto = media.find(m => !isVideo(m));
+    const cover = item.image || firstPhoto || '';
     const card = document.createElement('div');
-    card.className = 'collection-card' + (photos.length ? ' has-gallery' : '');
+    card.className = 'collection-card' + (media.length ? ' has-gallery' : '');
+
+    const nVid = media.filter(isVideo).length;
+    const nImg = media.length - nVid;
+    const parts = [];
+    if (nImg) parts.push(`${nImg} photo${nImg > 1 ? 's' : ''}`);
+    if (nVid) parts.push(`${nVid} video${nVid > 1 ? 's' : ''}`);
 
     const visual = cover
       ? `<img class="collection-photo" src="${cover}" alt="${item.name}">`
       : `<div class="collection-icon">${fallbackIcon}</div>`;
-    const hint = photos.length
-      ? `<span class="view-gallery">View ${photos.length} photo${photos.length > 1 ? 's' : ''} &rarr;</span>`
+    const hint = media.length
+      ? `<span class="view-gallery">View ${parts.join(' &amp; ')} &rarr;</span>`
       : '';
     card.innerHTML = `${visual}<h3>${item.name}</h3><p>${item.description}</p>${hint}`;
 
-    if (photos.length) {
+    if (media.length) {
       card.tabIndex = 0;
       card.setAttribute('role', 'button');
-      card.setAttribute('aria-label', `View ${item.name} photos`);
-      card.addEventListener('click', () => openGallery(item, photos, card));
+      card.setAttribute('aria-label', `View ${item.name} photos and videos`);
+      card.addEventListener('click', () => openGallery(item, media, card));
       card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGallery(item, photos, card); }
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGallery(item, media, card); }
       });
     }
     grid.appendChild(card);
   });
 
-  // ---------- Gallery pop-up + full-size viewer ----------
+  // ---------- Gallery pop-up + full-size viewer (photos and videos) ----------
+  // Extra styling for video thumbnails/player lives here so styles.css doesn't need to change
+  const mediaCss = document.createElement('style');
+  mediaCss.textContent = `
+    .gallery-grid .thumb { position: relative; aspect-ratio: 1 / 1; overflow: hidden; cursor: zoom-in; background: #000; border: 1px solid rgba(184,145,47,0.25); }
+    .gallery-grid .thumb img, .gallery-grid .thumb video { width: 100%; height: 100%; object-fit: cover; display: block; border: 0; aspect-ratio: auto; }
+    .gallery-grid .thumb:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+    .gallery-grid .thumb .play-badge { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; pointer-events: none; background: rgba(20,24,14,0.18); }
+    .gallery-grid .thumb .play-badge span { width: 54px; height: 54px; border-radius: 50%; background: rgba(47,56,35,0.78); border: 1px solid rgba(212,175,55,0.75); color: var(--gold-pale); display: flex; align-items: center; justify-content: center; font-size: 1.15rem; padding-left: 3px; }
+    .lightbox video { display: none; max-width: 88vw; max-height: 84vh; background: #000; }
+  `;
+  document.head.appendChild(mediaCss);
+
   const gal = document.createElement('div');
   gal.className = 'gallery-modal';
   gal.innerHTML = `
@@ -101,10 +122,11 @@
       <div class="gallery-cta"><a id="galWa" class="btn btn-gold" target="_blank" rel="noopener">Ask about this collection on WhatsApp</a></div>
     </div>
     <div class="lightbox" id="lightbox">
-      <button type="button" class="lb-close" aria-label="Close photo">&times;</button>
-      <button type="button" class="lb-prev" aria-label="Previous photo">&#10094;</button>
+      <button type="button" class="lb-close" aria-label="Close">&times;</button>
+      <button type="button" class="lb-prev" aria-label="Previous">&#10094;</button>
       <img id="lbImg" alt="">
-      <button type="button" class="lb-next" aria-label="Next photo">&#10095;</button>
+      <video id="lbVideo" controls playsinline></video>
+      <button type="button" class="lb-next" aria-label="Next">&#10095;</button>
       <span class="lb-count" id="lbCount"></span>
     </div>`;
   document.body.appendChild(gal);
@@ -112,11 +134,12 @@
   const galGrid = gal.querySelector('#galGrid');
   const lightbox = gal.querySelector('#lightbox');
   const lbImg = gal.querySelector('#lbImg');
+  const lbVideo = gal.querySelector('#lbVideo');
   const lbCount = gal.querySelector('#lbCount');
-  let currentPhotos = [], currentIndex = 0, currentName = '', lastFocus = null;
+  let currentMedia = [], currentIndex = 0, currentName = '', lastFocus = null;
 
-  function openGallery(item, photos, triggerEl) {
-    currentPhotos = photos;
+  function openGallery(item, media, triggerEl) {
+    currentMedia = media;
     currentName = item.name;
     lastFocus = triggerEl;
     gal.querySelector('#galTitle').textContent = item.name;
@@ -126,13 +149,36 @@
       encodeURIComponent(`Hi Shagun Jewellery, I'm interested in your ${item.name}.`);
 
     galGrid.innerHTML = '';
-    photos.forEach((src, i) => {
-      const img = document.createElement('img');
-      img.src = src;
-      img.alt = `${item.name} photo ${i + 1}`;
-      img.loading = 'lazy';
-      img.addEventListener('click', () => openLightbox(i));
-      galGrid.appendChild(img);
+    media.forEach((src, i) => {
+      const thumb = document.createElement('div');
+      thumb.className = 'thumb';
+      thumb.tabIndex = 0;
+      thumb.setAttribute('role', 'button');
+      if (isVideo(src)) {
+        const v = document.createElement('video');
+        v.src = src + '#t=0.1';        // shows the first frame as the thumbnail
+        v.muted = true;
+        v.preload = 'metadata';
+        v.playsInline = true;
+        thumb.appendChild(v);
+        const badge = document.createElement('div');
+        badge.className = 'play-badge';
+        badge.innerHTML = '<span>&#9654;</span>';
+        thumb.appendChild(badge);
+        thumb.setAttribute('aria-label', `Play ${item.name} video ${i + 1}`);
+      } else {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `${item.name} photo ${i + 1}`;
+        img.loading = 'lazy';
+        thumb.appendChild(img);
+        thumb.setAttribute('aria-label', `View ${item.name} photo ${i + 1}`);
+      }
+      thumb.addEventListener('click', () => openLightbox(i));
+      thumb.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(i); }
+      });
+      galGrid.appendChild(thumb);
     });
 
     gal.classList.add('open');
@@ -148,19 +194,39 @@
     if (lastFocus) lastFocus.focus();
   }
 
+  function stopVideo() {
+    lbVideo.pause();
+    lbVideo.removeAttribute('src');
+    lbVideo.load();
+  }
   function openLightbox(i) {
     currentIndex = i;
     showLightbox();
     lightbox.classList.add('open');
   }
-  function closeLightbox() { lightbox.classList.remove('open'); }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    stopVideo();
+  }
   function showLightbox() {
-    lbImg.src = currentPhotos[currentIndex];
-    lbImg.alt = `${currentName} photo ${currentIndex + 1}`;
-    lbCount.textContent = `${currentIndex + 1} / ${currentPhotos.length}`;
+    const src = currentMedia[currentIndex];
+    if (isVideo(src)) {
+      lbImg.style.display = 'none';
+      lbVideo.style.display = 'block';
+      lbVideo.src = src;
+      const p = lbVideo.play();
+      if (p && p.catch) p.catch(() => {});   // if the browser blocks autoplay, the viewer can press play
+    } else {
+      stopVideo();
+      lbVideo.style.display = 'none';
+      lbImg.style.display = 'block';
+      lbImg.src = src;
+      lbImg.alt = `${currentName} photo ${currentIndex + 1}`;
+    }
+    lbCount.textContent = `${currentIndex + 1} / ${currentMedia.length}`;
   }
   function stepLightbox(d) {
-    currentIndex = (currentIndex + d + currentPhotos.length) % currentPhotos.length;
+    currentIndex = (currentIndex + d + currentMedia.length) % currentMedia.length;
     showLightbox();
   }
 
@@ -174,7 +240,7 @@
   document.addEventListener('keydown', e => {
     if (!gal.classList.contains('open')) return;
     if (e.key === 'Escape') { lightbox.classList.contains('open') ? closeLightbox() : closeGallery(); }
-    if (lightbox.classList.contains('open')) {
+    if (lightbox.classList.contains('open') && e.target !== lbVideo) {
       if (e.key === 'ArrowRight') stepLightbox(1);
       if (e.key === 'ArrowLeft') stepLightbox(-1);
     }
