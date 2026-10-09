@@ -56,3 +56,5 @@ collections:
               - { label: "Collection Name", name: "name", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Photo", name: "image", widget: "image", required: false, hint: "Recommended: square photo, at least 600x600px" }
+              - { label: "Cover Photo (optional - shown on the card; if empty, the first gallery photo is used)", name: "image", widget: "image", required: false }
+              - { label: "Gallery Photos (up to about 10 - shown when a visitor clicks this collection)", name: "photos", widget: "image", required: false, allow_multiple: true, hint: "Click Choose an image, then Upload and select several photos at once." }
