@@ -57,4 +57,10 @@ collections:
               - { label: "Collection Name", name: "name", widget: "string" }
               - { label: "Description", name: "description", widget: "text" }
               - { label: "Cover Photo (optional - shown on the card; if empty, the first gallery photo is used)", name: "image", widget: "image", required: false }
-              - { label: "Gallery Photos (up to about 10 - shown when a visitor clicks this collection)", name: "photos", widget: "image", required: false, allow_multiple: true, hint: "Click Choose an image, then Upload and select several photos at once." }
+              - label: "Gallery Photos & Videos (shown when a visitor clicks this collection)"
+                name: "photos"
+                widget: "list"
+                required: false
+                hint: "Click Add photo or video, then choose a file. Photos: JPG/PNG. Videos: MP4 (short, under about 15 MB each)."
+                add_to_top: false
+                field: { label: "Photo or video", name: "media", widget: "file", allow_multiple: false }
